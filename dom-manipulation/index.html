@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Quote Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 40px;
+            background-color: #fdfdfd;
+        }
+        h1 {
+            color: #333;
+        }
+        #quoteDisplay {
+            margin: 20px auto;
+            font-size: 1.4em;
+            font-style: italic;
+            padding: 20px;
+            width: 60%;
+            background: #f4f4f4;
+            border-radius: 8px;
+            min-height: 60px;
+        }
+        select, input, button {
+            margin: 8px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #3b82f6;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2563eb;
+        }
+        .category-label {
+            font-weight: bold;
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dynamic Quote Generator</h1>
+    <p style="font-style: italic; color: gray;">
+        “A little wisdom, a little laughter — one quote at a time.”
+    </p>
+
+    <!-- Quote Display -->
+    <div id="quoteDisplay">Click "✨ Show Me Something New" to begin!</div>
+
+    <!-- Category Selection -->
+    <label class="category-label">Choose Category:</label>
+    <select id="categorySelect"></select>
+
+    <!-- Buttons -->
+    <div>
+        <button id="newQuote">✨ Show Me Something New</button>
+    </div>
+
+    <!-- Add New Quote Form -->
+    <h3>Add Your Own Quote</h3>
+    <div>
+        <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
+        <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
+        <button id="addQuoteBtn">Add Quote</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
