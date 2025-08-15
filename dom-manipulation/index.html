@@ -1,76 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Quote Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 40px;
-            background-color: #fdfdfd;
-        }
-        h1 {
-            color: #333;
-        }
-        #quoteDisplay {
-            margin: 20px auto;
-            font-size: 1.4em;
-            font-style: italic;
-            padding: 20px;
-            width: 60%;
-            background: #f4f4f4;
-            border-radius: 8px;
-            min-height: 60px;
-        }
-        select, input, button {
-            margin: 8px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #3b82f6;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #2563eb;
-        }
-        .category-label {
-            font-weight: bold;
-            display: block;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dynamic Quote Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin: 40px; background: #fdfdfd; }
+    h1 { color: #333; margin-bottom: 6px; }
+    #tagline { font-style: italic; color: gray; margin-top: 0; }
+    #quoteDisplay {
+      margin: 20px auto; font-size: 1.2rem; font-style: italic;
+      padding: 20px; width: min(720px, 90%); background: #f4f4f4;
+      border-radius: 10px; min-height: 64px;
+    }
+    .row { margin: 10px 0; }
+    label { font-weight: 600; margin-right: 8px; }
+    select, input[type="text"], input[type="file"] {
+      padding: 8px; border: 1px solid #ccc; border-radius: 6px; min-width: 220px;
+    }
+    button {
+      padding: 8px 12px; border: none; border-radius: 8px; cursor: pointer;
+      background: #3b82f6; color: #fff;
+    }
+    button:hover { background: #2563eb; }
+    .muted { color: #666; font-size: 0.9rem; }
+    .inline { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .stack { display: grid; gap: 8px; justify-content: center; }
+    hr { border: none; height: 1px; background: #e5e5e5; margin: 24px 0; }
+  </style>
 </head>
 <body>
-    <h1>Dynamic Quote Generator</h1>
-    <p style="font-style: italic; color: gray;">
-        “A little wisdom, a little laughter — one quote at a time.”
-    </p>
+  <h1>Dynamic Quote Generator</h1>
+  <p id="tagline">“A little wisdom, a little laughter — one quote at a time.”</p>
 
-    <!-- Quote Display -->
-    <div id="quoteDisplay">Click "✨ Show Me Something New" to begin!</div>
+  <!-- Quote Display -->
+  <div id="quoteDisplay">Click “✨ Show Me Something New” to begin!</div>
+  <div class="muted" id="sessionInfo"></div>
 
-    <!-- Category Selection -->
-    <label class="category-label">Choose Category:</label>
+  <!-- Category Selection -->
+  <div class="row inline">
+    <label for="categorySelect">Choose Category:</label>
     <select id="categorySelect"></select>
+    <button id="newQuote">✨ Show Me Something New</button>
+  </div>
 
-    <!-- Buttons -->
-    <div>
-        <button id="newQuote">✨ Show Me Something New</button>
+  <hr/>
+
+  <!-- Add New Quote Form -->
+  <h3>Add Your Own Quote</h3>
+  <div class="row inline">
+    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
+    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
+    <button id="addQuoteBtn">Add Quote</button>
+  </div>
+
+  <hr/>
+
+  <!-- Import / Export -->
+  <h3>Import / Export Quotes (JSON)</h3>
+  <div class="stack">
+    <div class="inline">
+      <button id="exportBtn">Export Quotes (JSON)</button>
+      <a id="downloadLink" class="muted" href="#" download style="display:none;">Download is ready</a>
     </div>
-
-    <!-- Add New Quote Form -->
-    <h3>Add Your Own Quote</h3>
-    <div>
-        <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
-        <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-        <button id="addQuoteBtn">Add Quote</button>
+    <div class="inline">
+      <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
+      <button id="clearAllBtn" title="Clears only saved data, keeps defaults in memory">Clear Saved Data</button>
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
